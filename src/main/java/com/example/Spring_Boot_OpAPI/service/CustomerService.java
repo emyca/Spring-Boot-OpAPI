@@ -5,9 +5,9 @@ import com.example.Spring_Boot_OpAPI.dto.CustomerDtoResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface CustomerService {
-    ResponseEntity<CustomerDtoResponse> create(CustomerDtoRequest request);
-    ResponseEntity<CustomerDtoResponse> getAll();
-    ResponseEntity<CustomerDtoResponse> getById(Long id);
-    ResponseEntity<CustomerDtoResponse> updateById(Long id, CustomerDtoRequest request);
-    ResponseEntity<CustomerDtoResponse> deleteById(Long id);
+    CustomerDtoResponse create(CustomerDtoRequest request);
+    CustomerDtoResponse getAll();
+    CustomerDtoResponse getById(Long id);
+    CustomerDtoResponse updateById(Long id, CustomerDtoRequest request);
+    CustomerDtoResponse deleteById(Long id);
 }
