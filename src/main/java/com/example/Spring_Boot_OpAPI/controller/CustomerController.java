@@ -29,4 +29,12 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(service.getAll());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerDtoResponse> getById(
+            @PathVariable("id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(service.getById(id));
+    }
+
 }
