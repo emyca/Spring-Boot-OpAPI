@@ -37,4 +37,12 @@ public class CustomerController {
                 .body(service.getById(id));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomerDtoResponse> updateById(
+            @PathVariable("id") Long id,
+            @RequestBody CustomerDtoRequest request) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(service.updateById(id, request));
+    }
+
 }

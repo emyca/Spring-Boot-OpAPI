@@ -93,7 +93,30 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDtoResponse updateById(Long id, CustomerDtoRequest request) {
-        return null;
+        Customer customer = repository.findById(id)
+                .map(_customer ->
+                        repository.save(
+                                mapper.dtoUpdateByIdToEntity(
+                                        id, request, _customer)))
+                .orElse(null);
+        return (customer != null)
+                ? new CustomerDtoResponse.Builder()
+                .status(HttpStatus.OK.value())
+                .reasonPhrase(HttpStatus.OK.getReasonPhrase())
+                .success(true)
+                .message(CustomerDtoResponse
+                        .Message.SUCCESS_UPDATE_BY_ID_MSG.getMessage()
+                        .formatted(id))
+                .customer(customer)
+                .build()
+                : new CustomerDtoResponse.Builder()
+                .status(HttpStatus.NOT_FOUND.value())
+                .reasonPhrase(HttpStatus.NOT_FOUND.getReasonPhrase())
+                .success(false)
+                .message(CustomerDtoResponse
+                        .Message.FAILURE_GET_BY_ID_MSG.getMessage()
+                        .formatted(id))
+                .build();
     }
 
     @Override
