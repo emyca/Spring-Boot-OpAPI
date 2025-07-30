@@ -121,6 +121,24 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDtoResponse deleteById(Long id) {
-        return null;
+        if (repository.findById(id).isPresent()) {
+            repository.deleteById(id);
+            return new CustomerDtoResponse.Builder()
+                    .status(HttpStatus.OK.value())
+                    .reasonPhrase(HttpStatus.OK.getReasonPhrase())
+                    .success(true)
+                    .message(CustomerDtoResponse
+                            .Message.SUCCESS_DELETE_BY_ID_MSG.getMessage()
+                            .formatted(id))
+                    .build();
+        } else
+            return new CustomerDtoResponse.Builder()
+                .status(HttpStatus.NOT_FOUND.value())
+                .reasonPhrase(HttpStatus.NOT_FOUND.getReasonPhrase())
+                .success(false)
+                .message(CustomerDtoResponse
+                        .Message.FAILURE_GET_BY_ID_MSG.getMessage()
+                        .formatted(id))
+                .build();
     }
 }

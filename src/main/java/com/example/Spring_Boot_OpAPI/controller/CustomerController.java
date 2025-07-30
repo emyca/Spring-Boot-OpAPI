@@ -45,4 +45,10 @@ public class CustomerController {
                 .body(service.updateById(id, request));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<CustomerDtoResponse> deleteById(
+            @PathVariable("id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(service.deleteById(id));
+    }
 }
