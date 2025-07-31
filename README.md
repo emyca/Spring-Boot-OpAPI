@@ -22,6 +22,7 @@ This demo app is only for demonstration and/or educational purposes.
 
 * https://www.openapis.org/
 * https://swagger.io/
+* https://swagger.io/tools/swagger-ui/
 * https://www.postman.com/
 
 
