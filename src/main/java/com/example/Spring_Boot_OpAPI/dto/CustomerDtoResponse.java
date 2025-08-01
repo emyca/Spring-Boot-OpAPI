@@ -2,17 +2,46 @@ package com.example.Spring_Boot_OpAPI.dto;
 
 import com.example.Spring_Boot_OpAPI.entity.Customer;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 
 import java.util.List;
 
 public record CustomerDtoResponse(
+        @Schema(
+                name = "Status",
+                example = "200",
+                requiredMode = Schema.RequiredMode.REQUIRED,
+                description = "HTTP status code.")
         int status,
+        @Schema(
+                name = "Reason phrase",
+                example = "OK",
+                requiredMode = Schema.RequiredMode.REQUIRED,
+                description = "HTTP status code reason phrase.")
         String reasonPhrase,
+        @Schema(
+                name = "Success",
+                example = "true",
+                requiredMode = Schema.RequiredMode.REQUIRED,
+                description = "Indicates if work on the resource was successful.")
         boolean success,
+        @Schema(
+                name = "Message",
+                example = "Customer has been created successfully.",
+                requiredMode = Schema.RequiredMode.REQUIRED,
+                description = "Custom response message.")
         String message,
+         @Schema(
+                name = "Customer object",
+                requiredMode = Schema.RequiredMode.AUTO,
+                description = "Customer object response body.")
         @JsonInclude(JsonInclude.Include.NON_NULL)
         Customer customer,
+        @Schema(
+                name = "Customer object list",
+                requiredMode = Schema.RequiredMode.AUTO,
+                description = "Customer object list response body.")
         @JsonInclude(JsonInclude.Include.NON_NULL)
         List<Customer> customerList) {
 
