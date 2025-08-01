@@ -3,6 +3,7 @@ package com.example.Spring_Boot_OpAPI.controller;
 import com.example.Spring_Boot_OpAPI.dto.CustomerDtoRequest;
 import com.example.Spring_Boot_OpAPI.dto.CustomerDtoResponse;
 import com.example.Spring_Boot_OpAPI.service.CustomerService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +25,14 @@ public class CustomerController {
                 .body(service.create(request));
     }
 
+    @Tag(name = "GETs", description = "getting customer(s) data")
     @GetMapping
     public ResponseEntity<CustomerDtoResponse> getAll() {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(service.getAll());
     }
 
+    @Tag(name = "GETs", description = "getting customer(s) data")
     @GetMapping("/{id}")
     public ResponseEntity<CustomerDtoResponse> getById(
             @PathVariable("id") Long id) {
