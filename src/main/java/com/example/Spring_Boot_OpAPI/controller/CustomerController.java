@@ -4,6 +4,7 @@ import com.example.Spring_Boot_OpAPI.dto.CustomerDtoRequest;
 import com.example.Spring_Boot_OpAPI.dto.CustomerDtoResponse;
 import com.example.Spring_Boot_OpAPI.service.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -139,11 +140,48 @@ public class CustomerController {
 
     @Tag(name = "Read")
     @Operation(
-            summary = "Gets customer by its id",
-            description = "Gets specific Customer object. " +
-                    "The response is Customer object got by its id.")
+            summary = "Gets Customer by its id or fails")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",
+                    description = "Customer is got by its id.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CustomerDtoResponse.class),
+                            examples = @ExampleObject(
+                                    name = "Customer exists",
+                                    description = "Customer is got by its existing id.",
+                                    value = """
+                                            {
+                                                "status": 200,
+                                                "reasonPhrase": "OK",
+                                                "success": true,
+                                                "message": "Customer with id 1 has been fetched successfully.",
+                                                "customer": {
+                                                    "id": 1,
+                                                    "firstName": "Alice",
+                                                    "lastName": "Terra",
+                                                    "email": "alice@mail.com"
+                                                }
+                                            }"""))}),
+            @ApiResponse(responseCode = "404",
+                    description = "Customer is NOT got by provided id.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CustomerDtoResponse.class),
+                            examples = @ExampleObject(
+                                    name = "No Customer with such id",
+                                    description = "Customer is NOT got by provided id. " +
+                                            "The Customer was previously unsaved or deleted.",
+                                    value = """
+                                            {
+                                                "status": 404,
+                                                "reasonPhrase": "Not Found",
+                                                "success": false,
+                                                "message": "Customer with id 5 has NOT been found!"
+                                            }""")))})
     @GetMapping("/{id}")
     public ResponseEntity<CustomerDtoResponse> getById(
+            @Parameter(
+                    description = "Customer id to get the Customer by its id.",
+                    required = true)
             @PathVariable("id") Long id) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(service.getById(id));
