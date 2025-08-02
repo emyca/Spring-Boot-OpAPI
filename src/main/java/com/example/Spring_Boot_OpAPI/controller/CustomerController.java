@@ -86,9 +86,51 @@ public class CustomerController {
 
     @Tag(name = "Read")
     @Operation(
-            summary = "Gets all customers",
-            description = "Gets all Customer objects. " +
-                    "The response is all Customer objects array.")
+            summary = "Gets all Customers or empty list")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",
+                    description = "Customer list is fetched and it's NOT empty.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CustomerDtoResponse.class),
+                            examples = @ExampleObject(
+                                    name = "Customers exist",
+                                    description = "Customer list occurs NOT empty.",
+                                    value = """
+                                            {
+                                                "status": 200,
+                                                "reasonPhrase": "OK",
+                                                "success": true,
+                                                "message": "Customer list have been fetched successfully.",
+                                                "customerList": [
+                                                    {
+                                                        "id": 1,
+                                                        "firstName": "Tom",
+                                                        "lastName": "Orange",
+                                                        "email": "tom@mail.com"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "firstName": "Alice",
+                                                        "lastName": "Terra",
+                                                        "email": "alice@mail.com"
+                                                    }
+                                                ]
+                                            }"""))}),
+            @ApiResponse(responseCode = "404",
+                    description = "Customer list is fetched and it's empty.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CustomerDtoResponse.class),
+                            examples = @ExampleObject(
+                                    name = "No Customers",
+                                    description = "Customer list occurs empty.",
+                                    value = """
+                                            {
+                                                "status": 404,
+                                                "reasonPhrase": "Not Found",
+                                                "success": false,
+                                                "message": "Customer list have NOT been found!",
+                                                "customerList": []
+                                            }""")))})
     @GetMapping
     public ResponseEntity<CustomerDtoResponse> getAll() {
         return ResponseEntity.status(HttpStatus.OK)
