@@ -24,6 +24,7 @@ public class CustomerController {
         this.service = service;
     }
 
+    @Tag(name = "Create")
     @Operation(
             summary = "Creates new customer",
             description = "Creates new Customer object or fails.",
@@ -83,7 +84,7 @@ public class CustomerController {
                 .body(service.create(request));
     }
 
-    @Tag(name = "GETs", description = "getting customer(s) data")
+    @Tag(name = "Read")
     @Operation(
             summary = "Gets all customers",
             description = "Gets all Customer objects. " +
@@ -94,7 +95,7 @@ public class CustomerController {
                 .body(service.getAll());
     }
 
-    @Tag(name = "GETs", description = "getting customer(s) data")
+    @Tag(name = "Read")
     @Operation(
             summary = "Gets customer by its id",
             description = "Gets specific Customer object. " +
@@ -106,6 +107,7 @@ public class CustomerController {
                 .body(service.getById(id));
     }
 
+    @Tag(name = "Update")
     @Operation(
             summary = "Updates customer by its id",
             description = "Updates specific Customer object. " +
@@ -118,6 +120,7 @@ public class CustomerController {
                 .body(service.updateById(id, request));
     }
 
+    @Tag(name = "Delete")
     @Operation(
             summary = "Deletes customer by its id",
             description = "Deletes specific Customer object. " +
