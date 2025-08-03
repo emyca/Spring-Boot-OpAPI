@@ -189,11 +189,62 @@ public class CustomerController {
 
     @Tag(name = "Update")
     @Operation(
-            summary = "Updates customer by its id",
-            description = "Updates specific Customer object. " +
-                    "The response is Customer object updated by its id.")
+            summary = "Updates Customer by its id or fails",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "The Customer data to be updated.",
+                    required = true,
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CustomerDtoRequest.class),
+                            examples = @ExampleObject(
+                                    name = "Customer data to update",
+                                    description = "Customer data for updating in DB.",
+                                    value = """
+                                            {
+                                            	"firstName": "Alice",
+                                            	"lastName": "Moon",
+                                            	"email": "moon@mail.com"
+                                            }"""))))
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",
+                    description = "Customer is updated by its id.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CustomerDtoResponse.class),
+                            examples = @ExampleObject(
+                                    name = "Customer is updated",
+                                    description = "Customer is got by its existing id and updated.",
+                                    value = """
+                                            {
+                                                "status": 200,
+                                                "reasonPhrase": "OK",
+                                                "success": true,
+                                                "message": "Customer with id 1 has been updated successfully.",
+                                                "customer": {
+                                                    "id": 1,
+                                                    "firstName": "Alice",
+                                                    "lastName": "Moon",
+                                                    "email": "moon@mail.com"
+                                                }
+                                            }"""))}),
+            @ApiResponse(responseCode = "404",
+                    description = "Customer is NOT updated by provided id.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CustomerDtoResponse.class),
+                            examples = @ExampleObject(
+                                    name = "Customer is NOT updated",
+                                    description = "Customer is NOT updated by provided id. " +
+                                            "The Customer was previously unsaved or deleted.",
+                                    value = """
+                                            {
+                                                "status": 404,
+                                                "reasonPhrase": "Not Found",
+                                                "success": false,
+                                                "message": "Customer with id 8 has NOT been found!"
+                                            }""")))})
     @PutMapping("/{id}")
     public ResponseEntity<CustomerDtoResponse> updateById(
+            @Parameter(
+                    description = "Customer id to get the Customer by its id.",
+                    required = true)
             @PathVariable("id") Long id,
             @RequestBody CustomerDtoRequest request) {
         return ResponseEntity.status(HttpStatus.OK)
