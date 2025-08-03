@@ -253,12 +253,42 @@ public class CustomerController {
 
     @Tag(name = "Delete")
     @Operation(
-            summary = "Deletes customer by its id",
-            description = "Deletes specific Customer object. " +
-                    "The response is a message about Customer object " +
-                    "deletion by its id.")
+            summary = "Deletes Customer by its id or fails")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",
+                    description = "Customer is deleted by its id.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CustomerDtoResponse.class),
+                            examples = @ExampleObject(
+                                    name = "Customer is deleted",
+                                    description = "Customer is got by its existing id and deleted.",
+                                    value = """
+                                            {
+                                                "status": 200,
+                                                "reasonPhrase": "OK",
+                                                "success": true,
+                                                "message": "Customer with id 1 has been deleted successfully."
+                                            }"""))}),
+            @ApiResponse(responseCode = "404",
+                    description = "Customer is NOT deleted by provided id.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CustomerDtoResponse.class),
+                            examples = @ExampleObject(
+                                    name = "Customer is NOT deleted",
+                                    description = "Customer is NOT deleted by provided id. " +
+                                            "The Customer was previously unsaved or deleted.",
+                                    value = """
+                                            {
+                                                "status": 404,
+                                                "reasonPhrase": "Not Found",
+                                                "success": false,
+                                                "message": "Customer with id 7 has NOT been found!"
+                                            }""")))})
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomerDtoResponse> deleteById(
+            @Parameter(
+                    description = "Customer id to get the Customer by its id.",
+                    required = true)
             @PathVariable("id") Long id) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(service.deleteById(id));
