@@ -127,7 +127,10 @@ for interaction with REST API endpoints.
 It's no needs additionally configure Swagger UI, the `springdoc-openapi`
 library already includes it.
 
-You can get Swagger UI at http://localhost:8080/swagger-ui/index.html.
+You can get Swagger UI of this demo app through 
+```text
+http://localhost:8080/swagger-ui/index.html
+```
 
 This demo app uses some Swagger annotations to add information to API docs.
 A description of these annotations can be found by following the links pointed 
