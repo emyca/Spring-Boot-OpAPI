@@ -95,10 +95,16 @@ through their documenting with OpenAPI specifications.
 ### OpenAPI (Swagger)
 
 Run the app (if it's not running). Go to the API documentation default page
-by `http://localhost:8080/v3/api-docs`.
+by 
+```text
+http://localhost:8080/v3/api-docs
+```
 `JSON` format api docs data should appear.
 
-`YAML` file can be got at `http://localhost:8080/v3/api-docs.yaml`.
+`YAML` file can be got at
+```text
+http://localhost:8080/v3/api-docs.yaml
+```
 
 You can change the default api docs path from this
 
@@ -122,7 +128,7 @@ to the `application.properties` file.
 You can configure Swagger in the project 
 (see [class OpenAPIConfig](src/main/java/com/example/Spring_Boot_OpAPI/config/OpenAPIConfig.java)).
 
-Swagger UI (https://swagger.io/tools/swagger-ui/) provides a user interface
+[Swagger UI](https://swagger.io/tools/swagger-ui/) provides a user interface
 for interaction with REST API endpoints.
 It's no needs additionally configure Swagger UI, the `springdoc-openapi`
 library already includes it.
