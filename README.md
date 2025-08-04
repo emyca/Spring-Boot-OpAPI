@@ -95,10 +95,10 @@ through their documenting with OpenAPI specifications.
 ### OpenAPI (Swagger)
 
 Run the app (if it's not running). Go to the API documentation default page
-by http://localhost:8080/v3/api-docs.
+by `http://localhost:8080/v3/api-docs`.
 `JSON` format api docs data should appear.
 
-`YAML` file can be got at http://localhost:8080/v3/api-docs.yaml.
+`YAML` file can be got at `http://localhost:8080/v3/api-docs.yaml`.
 
 You can change the default api docs path from this
 
