@@ -1,0 +1,144 @@
+@startuml
+class com.example.Spring_Boot_OpAPI.dto.CustomerDtoRequest {
+- Long id
+- String firstName
+- String lastName
+- String email
++ String email()
++ String firstName()
++ Long id()
++ String lastName()
+}
+
+
+interface com.example.Spring_Boot_OpAPI.service.CustomerService {
+~ CustomerDtoResponse create(CustomerDtoRequest)
+~ CustomerDtoResponse getAll()
+~ CustomerDtoResponse getById(Long)
+~ CustomerDtoResponse updateById(Long,CustomerDtoRequest)
+~ CustomerDtoResponse deleteById(Long)
+}
+
+class com.example.Spring_Boot_OpAPI.dto.CustomerMapper {
++ Customer dtoCreateToEntity(CustomerDtoRequest)
++ Customer dtoUpdateByIdToEntity(Long,CustomerDtoRequest,Customer)
+}
+
+class com.example.Spring_Boot_OpAPI.OpApiApplicationTests {
+~ void contextLoads()
+}
+
+class com.example.Spring_Boot_OpAPI.config.OpenAPIConfig {
++ OpenAPI defineOpenApi()
+}
+
+class com.example.Spring_Boot_OpAPI.service.CustomerServiceImpl {
+- CustomerMapper mapper
+- CustomerRepository repository
++ CustomerDtoResponse create(CustomerDtoRequest)
++ CustomerDtoResponse getAll()
++ CustomerDtoResponse getById(Long)
++ CustomerDtoResponse updateById(Long,CustomerDtoRequest)
++ CustomerDtoResponse deleteById(Long)
+}
+
+
+interface com.example.Spring_Boot_OpAPI.repository.CustomerRepository {
+}
+class com.example.Spring_Boot_OpAPI.OpApiApplication {
++ {static} void main(String[])
+}
+
+class com.example.Spring_Boot_OpAPI.controller.CustomerController {
+- CustomerService service
++ ResponseEntity<CustomerDtoResponse> create(CustomerDtoRequest)
++ ResponseEntity<CustomerDtoResponse> getAll()
++ ResponseEntity<CustomerDtoResponse> getById(Long)
++ ResponseEntity<CustomerDtoResponse> updateById(Long,CustomerDtoRequest)
++ ResponseEntity<CustomerDtoResponse> deleteById(Long)
+}
+
+
+class com.example.Spring_Boot_OpAPI.entity.Customer {
+- Long id
+- String firstName
+- String lastName
+- String email
+}
+
+class com.example.Spring_Boot_OpAPI.dto.CustomerDtoResponse {
+- int status
+- String reasonPhrase
+- boolean success
+- String message
+- Customer customer
+- List<Customer> customerList
+~ int status
+~ String reasonPhrase
+~ boolean success
+~ String message
+~ Customer customer
+~ List<Customer> customerList
++  SUCCESS_CREATE_MSG
++  FAILURE_CREATE_MSG
++  SUCCESS_GET_LIST_MSG
++  FAILURE_GET_LIST_MSG
++  SUCCESS_GET_BY_ID_MSG
++  FAILURE_GET_BY_ID_MSG
++  SUCCESS_UPDATE_BY_ID_MSG
++  SUCCESS_DELETE_BY_ID_MSG
+- String message
++ Builder status(int)
++ Builder reasonPhrase(String)
++ Builder success(boolean)
++ Builder message(String)
++ Builder customer(Customer)
++ Builder customerList(List<Customer>)
++ CustomerDtoResponse build()
++ String message()
++ List<Customer> customerList()
++ boolean success()
++ Customer customer()
++ String reasonPhrase()
++ int status()
+}
+
+
+class com.example.Spring_Boot_OpAPI.dto.CustomerDtoResponse$Builder {
+~ int status
+~ String reasonPhrase
+~ boolean success
+~ String message
+~ Customer customer
+~ List<Customer> customerList
++ Builder status(int)
++ Builder reasonPhrase(String)
++ Builder success(boolean)
++ Builder message(String)
++ Builder customer(Customer)
++ Builder customerList(List<Customer>)
++ CustomerDtoResponse build()
+}
+
+
+enum com.example.Spring_Boot_OpAPI.dto.Message {
++  SUCCESS_CREATE_MSG
++  FAILURE_CREATE_MSG
++  SUCCESS_GET_LIST_MSG
++  FAILURE_GET_LIST_MSG
++  SUCCESS_GET_BY_ID_MSG
++  FAILURE_GET_BY_ID_MSG
++  SUCCESS_UPDATE_BY_ID_MSG
++  SUCCESS_DELETE_BY_ID_MSG
+- String message
+}
+
+class com.example.Spring_Boot_OpAPI.exception.CustomerException {
+}
+
+
+com.example.Spring_Boot_OpAPI.service.CustomerService <|.. com.example.Spring_Boot_OpAPI.service.CustomerServiceImpl
+org.springframework.data.repository.CrudRepository <|-- com.example.Spring_Boot_OpAPI.repository.CustomerRepository
+com.example.Spring_Boot_OpAPI.dto.CustomerDtoResponse +.. com.example.Spring_Boot_OpAPI.dto.CustomerDtoResponse$Builder
+com.example.Spring_Boot_OpAPI.exception.RuntimeException <|-- com.example.Spring_Boot_OpAPI.exception.CustomerException
+@enduml
