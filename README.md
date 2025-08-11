@@ -142,6 +142,10 @@ This demo app uses some Swagger annotations to add information to API docs.
 A description of these annotations can be found by following the links pointed 
 in the Resources section of this README file.
 
+### UML
+
+UML class-diagram image can be found [here](docs/app_class_diagram.png).
+
 
 ### Resources
 
