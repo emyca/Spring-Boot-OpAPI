@@ -66,7 +66,7 @@ Data of the table will be changed after each REST-request fulfilled.
 You can check it to perform above-mentioned `SELECT` query.
 
 
-### REST API 
+### REST API
 
 To test REST API you can use [Postman](https://www.postman.com/) as a testing tool.
 
