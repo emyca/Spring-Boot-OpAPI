@@ -13,7 +13,7 @@ This application provides REST APIs for the CMS API.
 This REST API allows to manipulate with customers data in DB.
 
 
-### Techstack
+### Tech Stack
 
 * [Spring Framework.](https://spring.io/)
 * [Developer Tools.](https://docs.spring.io/spring-boot/reference/using/devtools.html)
