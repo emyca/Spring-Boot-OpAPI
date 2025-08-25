@@ -5,6 +5,16 @@ This Spring Boot demo app demonstrates usage of OpenAPI as a standard specificat
 for describing API, and Swagger (a tool to create API documentation).
 This demo app is only for demonstration and/or educational purposes.
 
+**Table of Contents**
+
+* [Context](#context)
+* [Tech Stack](#tech-stack)
+* [Database](#database)
+* [REST API](#rest-api)
+* [OpenAPI (Swagger)](#openapi-swagger)
+* [UML](#uml)
+* [Resources](#resources)
+
 
 ### Context
 
