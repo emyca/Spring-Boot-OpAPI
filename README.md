@@ -154,7 +154,9 @@ in the Resources section of this README file.
 
 ### UML
 
-UML class-diagram image can be found [here](docs/app_class_diagram.png).
+UML class-diagram can be found [here](docs/app_class_diagram.puml).
+To read and preview PlantUML (`.puml`) files in IntelliJ IDEA, you need
+to install the `plantuml4idea` plugin.
 
 
 ### Resources
