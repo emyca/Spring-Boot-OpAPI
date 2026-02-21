@@ -19,17 +19,13 @@ interface com.example.Spring_Boot_OpAPI.service.CustomerService {
 ~ CustomerDtoResponse deleteById(Long)
 }
 
-class com.example.Spring_Boot_OpAPI.dto.CustomerMapper {
-+ Customer dtoCreateToEntity(CustomerDtoRequest)
-+ Customer dtoUpdateByIdToEntity(Long,CustomerDtoRequest,Customer)
-}
-
-class com.example.Spring_Boot_OpAPI.OpApiApplicationTests {
-~ void contextLoads()
-}
-
 class com.example.Spring_Boot_OpAPI.config.OpenAPIConfig {
 + OpenAPI defineOpenApi()
+}
+
+class com.example.Spring_Boot_OpAPI.mapper.CustomerMapper {
++ Customer dtoCreateToEntity(CustomerDtoRequest)
++ Customer dtoUpdateByIdToEntity(Long,CustomerDtoRequest,Customer)
 }
 
 class com.example.Spring_Boot_OpAPI.service.CustomerServiceImpl {
@@ -96,11 +92,11 @@ class com.example.Spring_Boot_OpAPI.dto.CustomerDtoResponse {
 + Builder customerList(List<Customer>)
 + CustomerDtoResponse build()
 + String message()
-+ List<Customer> customerList()
 + boolean success()
++ List<Customer> customerList()
++ int status()
 + Customer customer()
 + String reasonPhrase()
-+ int status()
 }
 
 
