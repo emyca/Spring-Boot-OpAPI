@@ -1,5 +1,6 @@
-package com.example.Spring_Boot_OpAPI.dto;
+package com.example.Spring_Boot_OpAPI.mapper;
 
+import com.example.Spring_Boot_OpAPI.dto.CustomerDtoRequest;
 import com.example.Spring_Boot_OpAPI.entity.Customer;
 import org.springframework.stereotype.Component;
 
