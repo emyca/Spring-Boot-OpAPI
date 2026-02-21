@@ -2,7 +2,7 @@ package com.example.Spring_Boot_OpAPI.service;
 
 import com.example.Spring_Boot_OpAPI.dto.CustomerDtoRequest;
 import com.example.Spring_Boot_OpAPI.dto.CustomerDtoResponse;
-import com.example.Spring_Boot_OpAPI.dto.CustomerMapper;
+import com.example.Spring_Boot_OpAPI.mapper.CustomerMapper;
 import com.example.Spring_Boot_OpAPI.entity.Customer;
 import com.example.Spring_Boot_OpAPI.repository.CustomerRepository;
 import org.springframework.http.HttpStatus;
